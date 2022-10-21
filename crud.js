@@ -84,3 +84,31 @@ $(document).ready(function () {
       })
   })
 })
+
+$('#btnPost').click(function () {
+  $.ajax({
+    url: API_ENDPOINT,
+    headers: {},
+    method: 'POST',
+    dataType: 'json',
+    data: {
+      id: 4,
+      name: 'Harry Potter and the Goblet of Fire'
+    },
+    success: function (data) {
+      let items = []
+      let results = data.data
+      results.map((item, index) => {
+        items.push(
+          "<div id='" + index + "'>" + (index + 1) + ' ' + item.name + '</div>'
+        )
+      })
+      $('#dataList').empty()
+      $('#dataList').append(items)
+    },
+    error: function (jqXhr, textStatus, errorMessage) {
+      // error callback
+      $('#error_section').append('Error: ' + errorMessage)
+    }
+  })
+})
