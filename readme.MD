@@ -1,6 +1,6 @@
 ## jQuery Ajax Review
 
-- jQuery ajax syntax generally looks like the below
+### when setting request headers
 
 ```
 $.ajax({
@@ -17,4 +17,28 @@ $.ajax({
       console.log('succes: '+data);
     }
   });
+```
+
+### When setting cookies,
+
+- request from client side
+
+```
+$.cookie("mycookie","mayvalue",{**path:'/'**});
+
+$.ajax({
+   url: a_cross_domain_url,
+   xhrFields: {
+      withCredentials: true
+   }
+});
+```
+
+- response from server side
+
+```
+Access-Control-Allow-Origin: http://foo.example
+Access-Control-Allow-Credentials: true
+
+[payload]
 ```
